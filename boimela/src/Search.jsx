@@ -17,7 +17,7 @@ function Search({ SearchTerm, onSearchTerm }) {
   );
 }
 
-Search.PropTypes = {
+Search.propTypes = {
   SearchTerm: PropTypes.string.isRequired,
   onSearchTerm: PropTypes.func.isRequired
 }

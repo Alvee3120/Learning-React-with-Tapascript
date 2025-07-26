@@ -65,19 +65,27 @@ const Books = [
     author: "Herman Melville",
     featured: false,
   },
-  
 ];
 
-function Boimela (){
+function Boimela() {
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [books, setBooks] = useState(Books);
 
-    const [SearchTerm, setSearchTerm] = useState('');
-    return(
-        <div className=" mx-auto p-10">
-      <Header /> 
-      <Search SearchTerm = {SearchTerm} onSearchTerm={setSearchTerm}/>
-       <Booklist SearchTerm = {SearchTerm} Books ={Books} />
-        </div>
-    )
+  console.log(books);
+  
+
+  const toggleFeature = (id) => {
+    setBooks(
+      books.map((book) => book.id === id ? { ...book, featured: !book.featured } : book)
+    );
+  };
+  return (
+    <div className=" mx-auto p-10">
+      <Header />
+      <Search SearchTerm={SearchTerm} onSearchTerm={setSearchTerm} />
+      <Booklist SearchTerm={SearchTerm} Books={books} ontoggleFeature = {toggleFeature}/>
+    </div>
+  );
 }
 
-export default Boimela ;
+export default Boimela;

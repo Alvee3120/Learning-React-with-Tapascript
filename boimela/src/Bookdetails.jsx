@@ -11,7 +11,7 @@ function Bookdetails({title,author}) {
   )
 }
 
-Bookdetails.PropTypes = {
+Bookdetails.propTypes = {
 
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired

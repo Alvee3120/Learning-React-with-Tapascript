@@ -3,24 +3,33 @@ import Bookrow from "./Bookrow";
 import PropTypes from "prop-types";
 
 
-function Booklist({SearchTerm, Books}) {
-  console.log(SearchTerm);
+function Booklist({SearchTerm, Books,ontoggleFeature}) {
+  
+  const rows = [];
+
+Books?.forEach((book) => {
+  
+  if(book.title.toLowerCase().indexOf(SearchTerm.toLowerCase()) === -1){
+    return ;
+  }
+
+  rows.push(<Bookrow key={book.id} book={book} ontoggleFeature = {ontoggleFeature} />)
+
+})
   
   return (
-    <ul className="space-y-4">
-      {Books.map((book) => (
-        <li key={book.id} className="flex items-center justify-between p-4 rounded-lg bg-white shadow ">
-          <Bookrow book={book} />
-        </li>
-      ))}
-    </ul>
+    <div className="space-y-4">
+      {rows}
+    </div>
+    
   );
 }
 
-Booklist.PropTypes = {
+Booklist.propTypes = {
 
   SearchTerm:PropTypes.string.isRequired,
-  Books: PropTypes.array.isRequired
+  Books: PropTypes.array.isRequired,
+  ontoggleFeature: PropTypes.func.isRequired 
 
 }
 
